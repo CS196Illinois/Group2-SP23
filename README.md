@@ -1,8 +1,17 @@
-# Group TEAM_NUMBER
+# Group 2
 Group Name: TEAM_NAME
 
-[MVP Link](http://cs196.cs.illinois.edu)
+[Group Resources](https://drive.google.com/drive/u/1/folders/1Md8Ylccf7n994CC2D0Pb2oLQurUDVXjo)
 
-Team Members: STUDENTS_NETIDS
+[MVP Link](https://docs.google.com/document/d/1IOS7-y-a59dnrQnugdt8CUyWN_VjTEl0_vT_W64baiA)
 
-Project Manager: PM_NETID
+Team Members:
+* abhag2
+* thomasp7
+* yuanbo3
+* xiaox6
+* ziyue8
+
+Project Managers:
+* jshal3
+* rohann5
