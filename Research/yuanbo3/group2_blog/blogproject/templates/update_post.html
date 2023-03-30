@@ -2,14 +2,27 @@
 {% block title %}Edit a post!{% endblock %}
 {% block content %}
 
-<h1>Update Blog Post</h1>
-<br/><br/>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Update Blog Post</h1>
+        <br/><br/>
 
-<div class="form-group">
-    <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-secondary">Update</button>
-</div>
+            <div class="form-group">
+                <form method="POST">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Update</button>
+            </div>
+    {% else %}
+        You are not allowed to edit this post
+        <br/><br/>
+        <a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
+    {% endif %}
+{% else %}
+    You are not allowed to edit this post
+    <br/><br/>
+    <a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
+{% endif %}
 
 {% endblock %}

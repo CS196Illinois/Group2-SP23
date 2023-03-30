@@ -8,17 +8,18 @@
 <small>
     By: {{ post.author.first_name }} {{ post.author.last_name }} - {{post.post_time}}
 </small> 
-<small>
-    - <a = href="{% url 'update-post' post.pk%}">(Edit)</a>
-</small>
-<small>
-    <a = href="{% url 'delete-post' post.pk%}">(Delete)</a>
-</small>ls
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <small>- <a = href="{% url 'update-post' post.pk%}">(Edit)</a></small>
+        <small><a = href="{% url 'delete-post' post.pk%}">(Delete)</a></small>
+    {% endif %}
+{% endif %}
 
 <br/>
 <hr>
 <br/>
-{{ post.body }}
+{{ post.body | safe}}
 
 <br/><br/>
 <a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
