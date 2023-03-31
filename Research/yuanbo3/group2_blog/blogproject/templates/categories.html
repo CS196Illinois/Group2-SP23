@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if category_posts %}
+    <h1>{{ cats }}</h1>
+
+    <ul>
+        {% for post in category_posts %}
+            <li><a href="{% url 'article-detail' post.pk %}"> {{ post.title }} </a> 
+                - {{ post.author.first_name }} {{ post.author.last_name }}
+                - {{ post.post_date }} 
+                
+                {% if user.is_authenticated %}
+                    - <small><small><a = href="{% url 'update-post' post.pk %}">(Edit)</a></small></small>
+                    <small><small><a = href="{% url 'delete-post' post.pk %}">(Delete)</a></small></small>
+                {% endif %}
+                <br/>
+            {{ post.body|slice:":200" | safe  }}</li>
+            <br/>
+        {% endfor%}
+        </ul>
+    
+    <br/><br/>
+    <a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
+
+{% else %}
+        <h2>Sorry, this page does not exists...or there are no blogs in this category.</h2>
+
+        <br/><br/>
+        <a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
+
+{% endif %}
+
+
+{% endblock %}
