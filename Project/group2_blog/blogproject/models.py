@@ -14,10 +14,22 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('home')
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+    profile_pic = models.ImageField(null = True, blank= True, upload_to="images/profile")
+    github_url = models.CharField(max_length=255, null = True, blank= True) # github
+    instagram_url = models.CharField(max_length=255, null = True, blank= True) # instagram
+    facebook_url = models.CharField(max_length=255, null = True, blank= True) # facebook
+
+    def __str__(self):
+        return str(self.user)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
     # title_tag = models.CharField(max_length=255, default= "My awesome blog")
+    header_image = models.ImageField(null = True, blank= True, upload_to="images/")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     #body = models.TextField()
