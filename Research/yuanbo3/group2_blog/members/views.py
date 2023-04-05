@@ -7,9 +7,15 @@ from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, PasswordChangingForm
 from blogproject.models import Profile
 
+class EditProfilePageView(generic.UpdateView):
+    model = Profile
+    template_name = 'registration/edit_profile_page.html'
+    fields = ['bio', 'profile_pic', 'instagram_url', 'facebook_url', 'github_url']
+
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
+    success_url = reverse_lazy('home')
 
     def get_context_data(self, *args, **kwargs):
         users = Profile.objects.all()
