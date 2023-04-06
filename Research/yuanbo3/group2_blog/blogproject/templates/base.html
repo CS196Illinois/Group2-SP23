@@ -58,8 +58,12 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Settings</a></li>
-                  <li><a class="dropdown-item" href="{% url 'edit-profile-page' user.profile.id %}">Edit Profile Page</a></li>
-                  <li><a class="dropdown-item" href="{% url 'profile-page' user.profile.id %}">My Profile Page</a></li>
+                  {% if user.profile %}
+                    <li><a class="dropdown-item" href="{% url 'edit-profile-page' user.profile.id %}">Edit Profile Page</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile-page' user.profile.id %}">My Profile Page</a></li>
+                  {% else %}
+                    <li><a class="dropdown-item" href="{% url 'create-profile-page' %}">Create A New Profile Page</a></li>
+                  {% endif %}
                 </ul>
               </li>
               
