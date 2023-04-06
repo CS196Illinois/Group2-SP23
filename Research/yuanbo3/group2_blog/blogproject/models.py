@@ -22,9 +22,11 @@ class Profile(models.Model):
     facebook_url = models.CharField(max_length=255, null = True, blank= True) # facebook
     github_url = models.CharField(max_length=255, null = True, blank= True) # github
     
-
     def __str__(self):
         return str(self.user)
+    
+    def get_absolute_url(self):
+        return reverse('home')
 
 
 class Post(models.Model):
