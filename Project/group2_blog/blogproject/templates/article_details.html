@@ -29,7 +29,15 @@
 {{ post.body | safe}}
 
 <br/><br/>
-<a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
+<h2>Comments</h2>
+{% if not post.comments.all %}
+  No comments yet...
+{% else %}
+  {% for comment in post.comments.all %}
+    {{ comment.body }} by: {{ comment.name }} {{ comment.date_added }}
+    
+  {% endfor %}
+{% endif %}
 
 <br/><br/>
 
@@ -47,9 +55,13 @@
       <div class="col-md-10">
         <div class="card-body">
           <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }} </h5>
+          
           <p class="card-text"><small class="text-body-secondary">
+            {% if post.author.profile %}
+              <a href = "{% url 'profile-page' post.author.profile.id %}">Profile Page</a>
+            {% endif %}
             {% if  post.author.profile.github_url %}
-              <a href="{{ post.author.profile.github_url }}">Github</a>
+              | <a href="{{ post.author.profile.github_url }}">Github</a>
             {% endif %}
             {% if  post.author.profile.instagram_url %}
                  | <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
