@@ -29,7 +29,15 @@
 {{ post.body | safe}}
 
 <br/><br/>
-<a  href="{% url 'home' %}" class="btn btn-dark"> Back</a>
+<h2>Comments</h2>
+{% if not post.comments.all %}
+  No comments yet...
+{% else %}
+  {% for comment in post.comments.all %}
+    {{ comment.body }} by: {{ comment.name }} {{ comment.date_added }}
+    
+  {% endfor %}
+{% endif %}
 
 <br/><br/>
 
