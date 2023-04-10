@@ -29,12 +29,23 @@
 {{ post.body | safe}}
 
 <br/><br/>
+<hr>
 <h2>Comments</h2>
 {% if not post.comments.all %}
-  No comments yet...
+  No comments yet...<a href = "{% url 'add-comment' post.pk %}">
+    Add one</a>
 {% else %}
+  <a href = "{% url 'add-comment' post.pk %}"> Add Comment</a>
+  <br/><br/>
   {% for comment in post.comments.all %}
-    {{ comment.body }} by: {{ comment.name }} {{ comment.date_added }}
+    <strong>
+      {{comment.name}}
+      {{comment.date_added}}
+    </strong>
+    <br/>
+    {{ comment.body }}
+    <br/>
+    <hr>
     
   {% endfor %}
 {% endif %}
