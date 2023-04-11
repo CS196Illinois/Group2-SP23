@@ -40,6 +40,7 @@ class Post(models.Model):
     post_time = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length = 255, default= "uncategorized")
     snippet = models.CharField(max_length = 255)
+    like = models.ManyToManyField(User, related_name='blog_posts')
 
 
     def __str__(self):
